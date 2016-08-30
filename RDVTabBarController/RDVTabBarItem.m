@@ -206,13 +206,20 @@
                                                  [self badgePositionAdjustment].horizontal,
                                                  textOffset + [self badgePositionAdjustment].vertical,
                                                  badgeSize.width + 2 * textOffset, badgeSize.height + 2 * textOffset);
+        CGRect backgroundFrame = badgeBackgroundFrame;
+        
+        backgroundFrame.origin.x -= self.badgeTextPadding.left;
+        backgroundFrame.origin.y -= self.badgeTextPadding.top;
+        backgroundFrame.size.height += self.badgeTextPadding.top + self.badgeTextPadding.bottom;
+        backgroundFrame.size.width += self.badgeTextPadding.left + self.badgeTextPadding.right;
         
         if ([self badgeBackgroundColor]) {
             CGContextSetFillColorWithColor(context, [[self badgeBackgroundColor] CGColor]);
             
-            CGContextFillEllipseInRect(context, badgeBackgroundFrame);
+            CGContextFillEllipseInRect(context, backgroundFrame);
         } else if ([self badgeBackgroundImage]) {
-            [[self badgeBackgroundImage] drawInRect:badgeBackgroundFrame];
+            
+            [[self badgeBackgroundImage] drawInRect:backgroundFrame];
         }
         
         CGContextSetFillColorWithColor(context, [[self badgeTextColor] CGColor]);

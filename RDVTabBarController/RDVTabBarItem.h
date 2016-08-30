@@ -128,4 +128,9 @@
  */
 @property (nonatomic) UIFont *badgeTextFont;
 
+/**
+ *The padding for increase/decrease background rectangle
+ */
+@property (nonatomic) UIEdgeInsets badgeTextPadding;
+
 @end
